@@ -1,4 +1,4 @@
-// #include "Matrix.h"
+#include "Matrix.h"
 #include "Vector.h"
 // #include "Shape.h"
 // #include "Triangle.h"
