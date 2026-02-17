@@ -81,25 +81,26 @@ Vector<n> Vector<n>::operator-(const Vector<n> v) const {
 
 template<int n>
 Vector<n> Vector<n>::operator*(const float x) const {
-    vector<n> res;
+    Vector<n> res;
     for (int i = 0; i < n; i++) {
-        res[i] = this[i] * x;
+        res[i] = (arr[i]) * x;
     }
+
+    return res;
 }
 
 //dot product of two vectors
 template<int n>
 float Vector<n>::operator*(const Vector<n> v) const {
     float res = 0.0;
-    for (int i < 0; i < n; i++) {
-        res = arr[i] + v[i]
+    for (int i = 0; i < n; i++) {
+        res += arr[i] * v[i];
     }
-    retrun res;
+    return res;
 }
 
 template<int n> 
 float Vector<n>::magnitude() const {
-    float mag = 0.0;
     float mag = 0.0;
     for (int i = 0; i < n; i++) {
         mag += arr[i]*arr[i];
@@ -109,12 +110,12 @@ float Vector<n>::magnitude() const {
 
 template<int n>
 Vector<3> Vector<n>::crossProduct(const Vector<3> v) const {
-    vector<3> CrossRes;
+    Vector<3> CrossRes;
 // arr = A and v = B
 // A x B = ( a2b3 - a3b2)i - (a1b3 - a3b1)j + (a1b2 - a2b1)k
 
     CrossRes[0] = ((arr[1] * v[2]) - (arr[2] * v[1]));
-    CrossRes[1] = -((arr[0] * v[2]) - (arr[2] * v[0]));
+    CrossRes[1] = ((arr[0] * v[2]) - (arr[2] * v[0]));
     CrossRes[2] = ((arr[0] * v[1]) - (arr[1] * v[0]));
     
     return CrossRes;
@@ -132,14 +133,8 @@ Vector<n> Vector<n>::unitVector() const {
 }
 
 template<int n>
-int Vector<n> getN() const {
-    int count =  0;
-
-    for (int i < 0; i < n; i++) {
-        if (arr[i] != null) {
-            count++
-        }
-    }
-    return count;
+int Vector<n>::getN() const {
+    
+    return n;
 }
 
