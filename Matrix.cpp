@@ -75,21 +75,22 @@ Matrix<n,m>& Matrix<n,m>::operator=(const Matrix<n,m>& mat) {
 
 template<int n, int m>
 template<int a>
-Matrix<n,a> Matrix<n,a>::operator*(const Matrix<m,a> mat) const{
+Matrix<n,a> Matrix<n,m>::operator*(const Matrix<m,a> mat) const{
     //Create new matrix to store result in
-    Matrix<m,a> res;
-    for (int i = 0; i < mat.n; i++) {
-        for (int j = 0; j < mat.a; j ++) {
-            for (int k = 0; k < a; k++) {
+    Matrix<n,a> res;
+    //Matrix multiplication
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < a; j ++) {
+            for (int k = 0; k < m; k++) {
                 res[i][j] += arr[i][k] * mat[k][j];
             }
         }
     }
-    return res;
+    return res;            
 }
 
 template<int n, int m>
-template<int a>
+// template<int a>
 Matrix<n,m> Matrix<n,m>::operator*(const float s) const {
     Matrix<n,m> res;
     for (int i = 0; i < n; i++) {
@@ -101,7 +102,7 @@ Matrix<n,m> Matrix<n,m>::operator*(const float s) const {
 }
 
 template<int n, int m>
-Matrix<n,m> Matrix<n,m>::operator+(const Matrix<n,m>& mat) const {
+Matrix<n,m> Matrix<n,m>::operator+(const Matrix<n,m> mat) const {
     Matrix<n,m> res;
 
     for (int i = 0; i < n; i++) {
