@@ -134,4 +134,7 @@ void testMatrix() {
     mat4 = mat2 * (~mat3);
     mat4.print();
 
+    //testing the determinant
+     std::cout << "Determinant of matrix 4 is " << mat4.determinant() << std::endl;
+
 }
