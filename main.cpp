@@ -1,8 +1,8 @@
 #include "Matrix.h"
 #include "Vector.h"
-// #include "Shape.h"
+#include "Shape.h"
 // #include "Triangle.h"
-// #include "Square.h"
+#include "Square.h"
 
 #include <iostream>
 
@@ -10,12 +10,14 @@
 
 void testVector();
 void testMatrix();
+void testSquare();
 
 int main(int argc, char const *argv[])
 {
 
     //testVector();
-    testMatrix();
+    // testMatrix();
+    testSquare();
     
     return 0;
 
@@ -137,4 +139,34 @@ void testMatrix() {
     //testing the determinant
      std::cout << "Determinant of matrix 4 is " << mat4.determinant() << std::endl;
 
+     std::cout << "=====================Matrix testing complete=====================" << std::endl;
+     std::cout << std::endl;
+}
+
+void testSquare() {
+    std::cout << "=====================Testing Square=====================" << std::endl;
+
+    Vector<3> center = Vector<3>{0.0, 0.0, 0.0};
+    float height = 2.0;
+    float width = 2.0;
+
+    Square<3> square1 = Square<3>(center, height, width);
+    std::cout << "Square1 created using center, height, and width:" << std::endl;
+    square1.print();
+
+    Vector<3> tl = Vector<3>{-1.0, 1.0, 0.0};
+    Vector<3> tr = Vector<3>{1.0, 1.0, 0.0};
+    Vector<3> br = Vector<3>{1.0, -1.0, 0.0};
+    Vector<3> bl = Vector<3>{-1.0, -1.0, 0.0};
+
+    Square<3> square2 = Square<3>(tl, tr, br, bl);
+    std::cout << "Square2 created using corner points:" << std::endl;
+    square2.print();
+
+    Square<3> square3 = Square<3>(square1);
+    std::cout << "Square3 (copy of square1):" << std::endl;
+    square3.print();
+
+     std::cout << "=====================Square testing complete=====================" << std::endl;
+     std::cout << std::endl;
 }

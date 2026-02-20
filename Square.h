@@ -22,13 +22,13 @@ class Square: public Shape<n> {
         virtual int getNumPoints() const;
 
         virtual void print() const{
-            cout << "_ P1 _ " << endl;
+            std::cout << "_ P1 _ " << std::endl;
             tl.print();
-            cout << "_ P2 _ " << endl;
+            std::cout << "_ P2 _ " << std::endl;
             tr.print();
-            cout << "_ P3 _ " << endl;
+            std::cout << "_ P3 _ " << std::endl;
             br.print();
-            cout << "_ P4 _ " << endl;
+            std::cout << "_ P4 _ " << std::endl;
             bl.print();
         }
 };
