@@ -8,9 +8,21 @@
 
 #include <sstream>
 
+void testVector();
+void testMatrix();
+
 int main(int argc, char const *argv[])
 {
-    std::cout << "=====================Testing Vector=====================" << std::endl;
+
+    //testVector();
+    testMatrix();
+    
+    return 0;
+
+}
+
+void testVector() {
+     std::cout << "=====================Testing Vector=====================" << std::endl;
 
     // Default constructor
     Vector<3> vec1 = Vector<3>();
@@ -82,7 +94,44 @@ int main(int argc, char const *argv[])
 
     std::cout << "=====================Vector testing complete=====================" << std::endl;
     std::cout << std::endl;
+}
 
+void testMatrix() {
     std::cout << "=====================Testing Matrix=====================" << std::endl;
+    // Default constructor
+    Matrix<2, 3> mat1 = Matrix<2, 3>();
+    std::cout << "Mat1 created:" << std::endl;
+    mat1.print();
+    std::cout << "Size of mat1 is " << mat1.getN() << "x" << mat1.getM() << std::endl;
+
+    //testing parameterized constructor
+    float **arr = new float*[2];
+    for (int i = 0; i < 2; i++) {
+        arr[i] = new float[3];
+        for (int j = 0; j < 3; j++) {
+            arr[i][j] = i + j; // Fill with some values
+        }
+    }
+
+    Matrix<2, 3> mat2 = Matrix<2, 3>(arr);
+    std::cout << "Mat2 created using parameterized constructor:" << std::endl;
+    mat2.print();
+    std::cout << "Size of mat2 is " << mat2.getN() << "x" << mat2.getM() << std::endl;
+
+    //testing copy constructor
+    Matrix<2, 3> mat3 = Matrix<2, 3>(mat2);
+    std::cout << "Mat3 (copy of mat2):" << std::endl;
+    mat3.print();
+
+    //testing assignment operator
+    mat1 = mat2;
+    std::cout << "Mat1 after assignment from mat2:" << std::endl;
+    mat1.print();
+
+    //testing the matrix multiplication
+    Matrix<2,2> mat4;
+    std::cout << "Mat4 is result of mat2 times mat3. Matrix multiplication." << std::endl;
+    mat4 = mat2 * (~mat3);
+    mat4.print();
 
 }
