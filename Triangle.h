@@ -19,11 +19,11 @@ class Triangle: public Shape<n> {
         virtual int getNumPoints() const;
 
         virtual void print() const{
-            cout << "_ P1 _ " << endl;
+            std::cout << "_ P1 _ " << std::endl;
             p1.print();
-            cout << "_ P2 _ " << endl;
+            std::cout << "_ P2 _ " << std::endl;
             p2.print();
-            cout << "_ P3 _ " << endl;
+            std::cout << "_ P3 _ " << std::endl;
             p3.print();
         }
 };

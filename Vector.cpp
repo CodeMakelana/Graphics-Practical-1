@@ -123,7 +123,7 @@ Vector<3> Vector<n>::crossProduct(const Vector<3> v) const {
 // A x B = ( a2b3 - a3b2)i - (a1b3 - a3b1)j + (a1b2 - a2b1)k
 
     CrossRes[0] = ((arr[1] * v[2]) - (arr[2] * v[1]));
-    CrossRes[1] = ((arr[0] * v[2]) - (arr[2] * v[0]));
+    CrossRes[1] = ((arr[2] * v[0]) - (arr[0] * v[2]));
     CrossRes[2] = ((arr[0] * v[1]) - (arr[1] * v[0]));
     
     return CrossRes;

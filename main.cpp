@@ -1,7 +1,7 @@
 #include "Matrix.h"
 #include "Vector.h"
 #include "Shape.h"
-// #include "Triangle.h"
+#include "Triangle.h"
 #include "Square.h"
 
 #include <iostream>
@@ -16,9 +16,9 @@ void testTriangle();
 int main(int argc, char const *argv[])
 {
 
-    //testVector();
+    testVector();
     // testMatrix();
-    testSquare();
+    // testSquare();
     // testTriangle();
     
     return 0;
@@ -193,5 +193,46 @@ void testSquare() {
     std::cout << std::endl;
 
      std::cout << "=====================Square testing complete=====================" << std::endl;
+     std::cout << std::endl;
+}
+
+void testTriangle() {
+    std::cout << "=====================Testing Triangle=====================" << std::endl;
+
+    Vector<3> p1 = Vector<3>{0.0, 0.0, 0.0};
+    Vector<3> p2 = Vector<3>{1.0, 0.0, 0.0};
+    Vector<3> p3 = Vector<3>{0.5, 1.0, 0.0};
+
+    Triangle<3> triangle1 = Triangle<3>(p1, p2, p3);
+    std::cout << "Triangle1 created using corner points:" << std::endl;
+    triangle1.print();
+
+    Triangle<3> triangle2 = Triangle<3>(triangle1);
+    std::cout << "Triangle2 (copy of triangle1):" << std::endl;
+    triangle2.print();
+
+    //testing the "Triangle<n>& operator*=(const Matrix<n,n>&)" function
+    Matrix<3,3> transformation;
+    transformation[0][0] = 1.0; transformation[0][1] = 0.0; transformation[0][2] = 1.0; // Translation
+    transformation[1][0] = 0.0; transformation[1][1] = 1.0; transformation[1][2] = 1.0; // Translation
+    transformation[2][0] = 0.0; transformation[2][1] = 0.0; transformation[2][2] = 1.0; // Homogeneous coordinate
+
+    triangle1 *= transformation;
+    std::cout << "Triangle1 after *= transformation:" << std::endl;
+    triangle1.print();
+
+    //testing the triangle getPoints() function
+    float* points = triangle2.getPoints();
+    std::cout << "Points of triangle2:" << std::endl;
+    for (int i = 0; i < triangle2.getNumPoints(); i++) {
+        std::cout << points[i] << " ";
+    }
+    std::cout << std::endl;
+
+    //testing the triangle grtNumPoints() function
+    std::cout << "Number of points in triangle2: " << triangle2.getNumPoints() << std::endl;
+
+
+     std::cout << "=====================Triangle testing complete=====================" << std::endl;
      std::cout << std::endl;
 }

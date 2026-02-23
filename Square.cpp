@@ -81,9 +81,9 @@ Square<n>& Square<n>::operator*=(const Matrix<n,n>& other) {
 
 template <int n>
 Square<n>* Square<n>::operator*(const Matrix<n,n>& other) const {
-    Square<n>* result = new Square<n>(*this);
-    *result *= other;
-    return result;
+    Square<n>* res = new Square<n>(*this);
+    (*res) *= other;
+    return res;
 }
 
 template <int n>
