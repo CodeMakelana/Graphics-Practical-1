@@ -11,6 +11,7 @@
 void testVector();
 void testMatrix();
 void testSquare();
+void testTriangle();
 
 int main(int argc, char const *argv[])
 {
@@ -18,6 +19,7 @@ int main(int argc, char const *argv[])
     //testVector();
     // testMatrix();
     testSquare();
+    // testTriangle();
     
     return 0;
 
@@ -166,6 +168,29 @@ void testSquare() {
     Square<3> square3 = Square<3>(square1);
     std::cout << "Square3 (copy of square1):" << std::endl;
     square3.print();
+
+    //testing the "Square<n>& operator*=(const Matrix<n,n>&)" function
+    Matrix<3,3> transformation;
+    transformation[0][0] = 1.0; transformation[0][1] = 0.0; transformation[0][2] = 1.0; // Translation
+    transformation[1][0] = 0.0; transformation[1][1] = 1.0; transformation[1][2] = 1.0; // Translation
+    transformation[2][0] = 0.0; transformation[2][1] = 0.0; transformation[2][2] = 1.0; // Homogeneous coordinate
+
+    square1 *= transformation;
+    std::cout << "Square1 after *= transformation:" << std::endl;
+    square1.print();
+
+    //testing the "Square<n>* operator*(const Matrix<n,n>&) const" function
+    Square<3>* square4 = square2 * transformation;
+    std::cout << "Square4 (result of square2 * transformation):" << std::endl;
+    square4->print();
+
+    //testing the "float* getPoints() const" function
+    float* points = square2.getPoints();
+    std::cout << "Points of square2:" << std::endl;
+    for (int i = 0; i < square2.getNumPoints(); i++) {
+        std::cout << points[i] << " ";
+    }
+    std::cout << std::endl;
 
      std::cout << "=====================Square testing complete=====================" << std::endl;
      std::cout << std::endl;

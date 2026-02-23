@@ -39,6 +39,14 @@ Vector<n>::Vector(const Vector<n> &v) {
 }
 
 template<int n>
+Vector<n>::Vector(const Matrix<n,1>& mat) {
+    arr = new float[n];
+    for (int i = 0; i < n; i++) {
+        arr[i] = mat[i][0];
+    }
+}
+
+template<int n>
 Vector<n>::operator Matrix<n,1>() const {
     Matrix<n,1> mat;
     for (int i = 0; i < n; i++) {
@@ -134,7 +142,6 @@ Vector<n> Vector<n>::unitVector() const {
 
 template<int n>
 int Vector<n>::getN() const {
-    
     return n;
 }
 
