@@ -23,7 +23,7 @@ class Triangle: public Shape<n> {
             p1.print();
             std::cout << "_ P2 _ " << std::endl;
             p2.print();
-            std::cout << "_ P3 _ " << std::endl;
+            std::cout << "_ P3 _ " << std::                                                                                                                                                                                                                                                                                                                                                     endl;
             p3.print();
         }
 };

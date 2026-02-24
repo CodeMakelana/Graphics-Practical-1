@@ -8,16 +8,16 @@
 
 #include <sstream>
 
-void testVector();
+// void testVector();
 void testMatrix();
-void testSquare();
-void testTriangle();
+// void testSquare();
+// void testTriangle();
 
 int main(int argc, char const *argv[])
 {
 
-    testVector();
-    // testMatrix();
+    // testVector();
+    testMatrix();
     // testSquare();
     // testTriangle();
     

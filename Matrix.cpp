@@ -151,39 +151,34 @@ Matrix<n-1, m-1> createSubMatrix(const Matrix<n,m>& mat, int excludeRow, int exc
     return res;
 }
 
-// Forward declaration of the helper struct
-template<int n, int m>
-struct DeterminantHelper;
 
 // Specialization for 1x1 base case
-template<int m>
-struct DeterminantHelper<1, m> {
-    static float calculate(const Matrix<1,m>& mat) {
-         if (1 != m) throw "Matrix is not square"; 
-        return mat[0][0];
-    }
-};
+template<>
+float Matrix<1,1>::determinant() const {
+    return arr[0][0];
+}
 
 // General recursive case
 template<int n, int m>
-struct DeterminantHelper {
-    static float calculate(const Matrix<n,m>& mat) {
-        if (n != m) throw "Matrix is not square"; 
-        
-        float det = 0;
-        int sign = 1;
-        // Logic for n > 1
-        for (int j = 0; j < n; j++) {
-            Matrix<n-1, m-1> sub = createSubMatrix(mat, 0, j);
-            det += sign * mat[0][j] * DeterminantHelper<n-1, m-1>::calculate(sub);
-            sign = -sign;
-        }
-        return det;
-    }
-};
-
-template<int n, int m>
 float Matrix<n,m>::determinant() const {
-    if (n != m) throw "Matrix is not square";
-    return DeterminantHelper<n,m>::calculate(*this);
+    // Check if matrix is square
+    if (n != m) {
+        throw "Matrix is not square";
+    }
+    
+    // Cofactor expansion along the first row
+    float det = 0.0f;
+    
+    for (int j = 0; j < n; j++) {
+        // Create submatrix by removing row 0 and column j
+        Matrix<n-1, n-1> submatrix = createSubMatrix(*this, 0, j);
+        
+        // Calculate cofactor sign: alternates +, -, +, -, ...
+        float sign = (j % 2 == 0) ? 1.0f : -1.0f;
+        
+        // Add contribution: sign × element × determinant of submatrix
+        det += sign * arr[0][j] * submatrix.determinant();
+    }
+    
+    return det;
 }
